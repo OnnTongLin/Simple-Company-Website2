@@ -12,6 +12,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -29,18 +30,34 @@
     </div>
 
     <!-- Contact Form -->
-    <form action="https://formspree.io/f/xjkodnek" method="POST" style="max-width:600px; margin:0 auto; text-align:left;">
-      <label>Name:</label><br>
-      <input type="text" name="name" required style="width:100%; padding:10px; margin:10px 0;"><br>
-      
-      <label>Email:</label><br>
-      <input type="email" name="email" required style="width:100%; padding:10px; margin:10px 0;"><br>
-      
-      <label>Message:</label><br>
-      <textarea name="message" rows="5" required style="width:100%; padding:10px; margin:10px 0;"></textarea><br>
-      
-      <button type="submit" style="padding:12px 20px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">Send</button>
-    </form>
+    <form action="https://formspree.io/f/xjkodnek" method="POST">
+  <label for="name">Name</label>
+  <input type="text" name="name" required>
+
+  <label for="email">Email</label>
+  <input type="email" name="email" required>
+
+  <label for="message">Message</label>
+  <textarea name="message" required></textarea>
+
+  <!-- Hidden Product Field -->
+  <input type="hidden" name="product" id="product">
+
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  // 从 URL 获取 product 参数
+  const urlParams = new URLSearchParams(window.location.search);
+  const product = urlParams.get('product');
+  if (product) {
+    document.getElementById('product').value = product;
+    // 也可以自动填入 message 里
+    document.querySelector('textarea[name="message"]').value = 
+      `I am interested in: ${product}`;
+  }
+</script>
+
   </section>
 
   <footer>

@@ -3,88 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - My Company</title>
+  <title>Contact Us - My Company</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    #form-status { margin-top: 1rem; font-weight: bold; }
-    #form-status.success { color: green; }
-    #form-status.error { color: red; }
-    .map { margin-top: 2rem; }
-  </style>
 </head>
 <body>
-  <header>
-    <h1>Contact Us</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section>
-    <h2>Get in Touch</h2>
-    <form id="contact-form" action="https://formspree.io/f/xjkodnek" method="POST">
-      <label>Name:</label><br>
-      <input type="text" name="name" placeholder="Your name" required><br><br>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-      <label>Email:</label><br>
-      <input type="email" name="email" placeholder="Your email" required><br><br>
+  <section style="margin-top:80px;">
+    <h2>Contact Us</h2>
+    <p>We would love to hear from you! Reach out to us using the form below or visit our office.</p>
 
-      <label>Message:</label><br>
-      <textarea name="message" placeholder="Your message" required></textarea><br><br>
-
-      <button type="submit">Send</button>
-    </form>
-    <p id="form-status"></p>
-  </section>
-
-  <section class="map">
-    <h2>Our Location</h2>
-    <!-- 替换成你公司地址的 Google Maps 代码 -->
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.278527862379!2d102.61376159999999!3d2.0444817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1b9da42181885%3A0x3297e07d4a4e126b!2sEconsave%20Bakri%20(Hypermarket%20%7C%20Wholesale)!5e0!3m2!1sen!2ssg!4v1755568323244!5m2!1sen!2ssg" 
+    <!-- Google Map -->
+    <div style="margin:30px auto; max-width:800px;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.278527862379!2d102.61376159999999!3d2.0444817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1b9da42181885%3A0x3297e07d4a4e126b!2sEconsave%20Bakri%20(Hypermarket%20%7C%20Wholesale)!5e0!3m2!1sen!2ssg!4v1755568323244!5m2!1sen!2ssg" 
     width="600" height="450" style="border:0;" 
     allowfullscreen="" loading="lazy" 
     referrerpolicy="no-referrer-when-downgrade">
-    </iframe>    
+    </iframe>
+    </div>
+
+    <!-- Contact Form -->
+    <form action="https://formspree.io/f/xjkodnek" method="POST" style="max-width:600px; margin:0 auto; text-align:left;">
+      <label>Name:</label><br>
+      <input type="text" name="name" required style="width:100%; padding:10px; margin:10px 0;"><br>
+      
+      <label>Email:</label><br>
+      <input type="email" name="email" required style="width:100%; padding:10px; margin:10px 0;"><br>
+      
+      <label>Message:</label><br>
+      <textarea name="message" rows="5" required style="width:100%; padding:10px; margin:10px 0;"></textarea><br>
+      
+      <button type="submit" style="padding:12px 20px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">Send</button>
+    </form>
   </section>
 
   <footer>
     <p>© 2025 My Company. All rights reserved.</p>
   </footer>
 
-  <script>
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("form-status");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      let data = new FormData(form);
-      try {
-        let response = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          status.className = "success";
-          status.innerHTML = "✅ Thanks! Your message has been sent.";
-          form.reset();
-        } else {
-          status.className = "error";
-          status.innerHTML = "❌ Oops! Something went wrong. Please try again.";
-        }
-      } catch (error) {
-        status.className = "error";
-        status.innerHTML = "❌ Network error. Please try again later.";
-      }
-    });
-  </script>
 </body>
 </html>
-
-
-
-
-

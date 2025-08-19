@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - My Company</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #form-status { margin-top: 1rem; font-weight: bold; }
+    #form-status.success { color: green; }
+    #form-status.error { color: red; }
+  </style>
 </head>
 <body>
   <header>
@@ -17,24 +22,53 @@
     </nav>
   </header>
 
-<section>
-  <h2>Get in Touch</h2>
-  <form action="https://formspree.io/f/xjkodnek" method="POST">
-    <label>Name:</label><br>
-    <input type="text" name="name" placeholder="Your name" required><br><br>
+  <section>
+    <h2>Get in Touch</h2>
+    <form id="contact-form" action="https://formspree.io/f/xjkodnek" method="POST">
+      <label>Name:</label><br>
+      <input type="text" name="name" placeholder="Your name" required><br><br>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" placeholder="Your email" required><br><br>
+      <label>Email:</label><br>
+      <input type="email" name="email" placeholder="Your email" required><br><br>
 
-    <label>Message:</label><br>
-    <textarea name="message" placeholder="Your message" required></textarea><br><br>
+      <label>Message:</label><br>
+      <textarea name="message" placeholder="Your message" required></textarea><br><br>
 
-    <button type="submit">Send</button>
-  </form>
-</section>
+      <button type="submit">Send</button>
+    </form>
+    <p id="form-status"></p>
+  </section>
 
   <footer>
     <p>© 2025 My Company. All rights reserved.</p>
   </footer>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let data = new FormData(form);
+      try {
+        let response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          status.className = "success";
+          status.innerHTML = "✅ Thanks! Your message has been sent.";
+          form.reset();
+        } else {
+          status.className = "error";
+          status.innerHTML = "❌ Oops! Something went wrong. Please try again.";
+        }
+      } catch (error) {
+        status.className = "error";
+        status.innerHTML = "❌ Network error. Please try again later.";
+      }
+    });
+  </script>
 </body>
 </html>

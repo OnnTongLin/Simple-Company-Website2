@@ -45,12 +45,14 @@ header .btn:hover {
 
 /* 导航栏样式 */
 nav {
-  position: absolute;
+  position: fixed;   /* 固定在顶部 */
   top: 0;
+  left: 0;
   width: 100%;
-  background: rgba(0,0,0,0.6); /* 半透明背景 */
+  background: rgba(0,0,0,0.7); /* 半透明黑色 */
   padding: 15px;
   text-align: center;
+  z-index: 1000; /* 确保在最上层 */
 }
 
 nav a {
@@ -67,7 +69,7 @@ nav a:hover {
 
 /* Sections */
 section {
-  padding: 60px 20px;
+  padding: 80px 20px;  /* 给内容多加 padding，避免被导航遮住 */
   text-align: center;
 }
 section h2 {

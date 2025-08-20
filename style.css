@@ -3,34 +3,24 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Header 样式 */
+/* Header 样式 + Banner */
 header {
-  background: #007BFF;
+  background: url("https://picsum.photos/1600/700") no-repeat center center/cover;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
-  padding: 15px 20px;
   text-align: center;
+  position: relative;
 }
 
+/* Banner 里的标题和文字 */
 header h1 {
   margin: 0;
-  font-size: 24px;
-}
-
-/* 导航栏样式 */
-nav {
-  margin-top: 10px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #FFD700; /* hover 变金色 */
+  font-size: 3rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
 }
 
 header p {
@@ -38,6 +28,8 @@ header p {
   margin: 15px 0 30px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
 }
+
+/* 按钮 */
 header .btn {
   background: #007BFF;
   color: white;
@@ -51,17 +43,26 @@ header .btn:hover {
   background: #0056b3;
 }
 
-/* Banner */
-header {
-  background: url("https://picsum.photos/1600/700") no-repeat center center/cover;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
+/* 导航栏样式 */
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6); /* 半透明背景 */
+  padding: 15px;
   text-align: center;
-  position: relative;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #FFD700; /* hover 变金色 */
 }
 
 /* Sections */
@@ -90,11 +91,9 @@ section p {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .enquire-btn:hover {
-  background: #0056b3; /* Hover 时颜色变深 */
+  background: #0056b3;
 }
-
 
 /* Footer */
 footer {

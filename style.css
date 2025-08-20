@@ -73,6 +73,22 @@ section p {
   line-height: 1.6;
 }
 
+/* Enquire Button Style */
+.enquire-btn {
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.enquire-btn:hover {
+  background: #0056b3; /* Hover 时颜色变深 */
+}
+
+
 /* Footer */
 footer {
   background: #333;

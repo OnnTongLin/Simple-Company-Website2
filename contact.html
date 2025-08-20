@@ -3,11 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - My Company</title>
+  <title>Contact Us</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Contact form styling */
+    form {
+      display: flex;
+      flex-direction: column; /* 强制竖直排列 */
+      max-width: 400px;       /* 表单宽度限制 */
+      margin: 20px auto;      /* 居中显示 */
+      gap: 10px;              /* 每个元素之间间距 */
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input,
+    form textarea,
+    form button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    form textarea {
+      resize: vertical; /* 允许用户上下拉伸 */
+      min-height: 120px;
+    }
+
+    form button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-
+  <header>
+    <h1>Contact Us</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>

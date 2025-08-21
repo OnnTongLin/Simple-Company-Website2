@@ -17,8 +17,9 @@
     <a href="services.html">Services</a>
     <a href="products.html" class="active">Products</a>
     <a href="contact.html">Contact</a>
-	<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-
+  <a href="cart.html" id="cart-link">
+    🛒 (<span id="cart-count">0</span>)
+  </a>
   </nav>
   </header>
 
@@ -95,23 +96,31 @@
   </footer>
 
 <script>
-  // 添加到购物车
+  // 添加到购物车（支持数量）
   function addToCart(productName, price) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name: productName, price: price });
+    let existing = cart.find(item => item.name === productName);
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name: productName, price: price, quantity: 1 });
+    }
+
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
   }
 
-  // 更新购物车数量
+  // 更新购物车数量（显示总数量）
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cart-count").textContent = cart.length;
+    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = count;
   }
 
-  // 页面加载时刷新购物车数量
   document.addEventListener("DOMContentLoaded", updateCartCount);
 </script>
+
 
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Shopping Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="total"></h3>
+  </main>
+
+  <script>
+    function updateCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartItemsDiv = document.getElementById("cart-items");
+      let totalDiv = document.getElementById("total");
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.textContent = "";
+        return;
+      }
+
+      let total = 0;
+      cartItemsDiv.innerHTML = "<ul>" + cart.map(item => {
+        total += item.price;
+        return `<li>${item.name} - $${item.price}</li>`;
+      }).join("") + "</ul>";
+
+      totalDiv.textContent = "Total: $" + total;
+    }
+
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCart();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

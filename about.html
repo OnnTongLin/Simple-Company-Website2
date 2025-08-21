@@ -14,6 +14,8 @@
     <a href="services.html">Services</a>
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
+	<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+
   </nav>
 
   <section style="margin-top:80px;">
@@ -25,6 +27,25 @@
   <footer>
     <p>© 2025 My Company. All rights reserved.</p>
   </footer>
+
+<script>
+  // 添加到购物车
+  function addToCart(productName, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name: productName, price: price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // 更新购物车数量
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+  }
+
+  // 页面加载时刷新购物车数量
+  document.addEventListener("DOMContentLoaded", updateCartCount);
+</script>
 
 </body>
 </html>

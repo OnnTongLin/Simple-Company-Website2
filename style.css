@@ -50,10 +50,8 @@ nav {
   left: 0;
   width: 100%;
   background: rgba(0,0,0,0.7); /* 半透明黑色 */
-   padding: 15px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 15px;
+  text-align: center;
   z-index: 1000; /* 确保在最上层 */
 }
 

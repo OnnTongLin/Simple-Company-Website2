@@ -3,65 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services - My Company</title>
+  <title>Our Services</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
-  <h1>Our Services</h1>
-  <nav>
-    <a href="index.html">Home</a>    
-	<a href="about.html">About</a>
-    <a href="services.html" class="active">Services</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-  <a href="cart.html" id="cart-link">
-    🛒 (<span id="cart-count">0</span>)
-  </a>
-  </nav>
-</header>
+    <h1>Our Services</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" id="cart-link">🛒 (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
 
-  <section style="margin-top:80px;">
-    <h2>Our Services</h2>
-    <p>We offer a wide range of services tailored to meet the needs of businesses of all sizes.</p>
-    <ul style="list-style:none; padding:0; max-width:800px; margin:20px auto; text-align:left;">
-      <li><strong>Web Development:</strong> Custom websites built for your brand.</li>
-      <li><strong>E-commerce Solutions:</strong> Online stores that scale with your business.</li>
-      <li><strong>Digital Marketing:</strong> SEO, social media, and online ads.</li>
-      <li><strong>Data Analytics:</strong> Insights to help you make better decisions.</li>
-    </ul>
+  <section>
+    <h2>What We Offer</h2>
+    <div class="card">
+      <h3>System Installation</h3>
+      <p>We install and configure operating systems for desktops and laptops.</p>
+      <button class="enquire-btn" onclick="enquireService('System Installation')">Enquire</button>
+    </div>
+
+    <div class="card">
+      <h3>Hardware Repair</h3>
+      <p>Repair and replacement services for computers, laptops, and servers.</p>
+      <button class="enquire-btn" onclick="enquireService('Hardware Repair')">Enquire</button>
+    </div>
+
+    <div class="card">
+      <h3>Network Setup</h3>
+      <p>Professional setup of LAN, Wi-Fi, and server infrastructure.</p>
+      <button class="enquire-btn" onclick="enquireService('Network Setup')">Enquire</button>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 My Company. All rights reserved.</p>
+    <p>&copy; 2025 My Company. All rights reserved.</p>
   </footer>
 
-<script>
-  // 添加到购物车（支持数量）
-  function addToCart(productName, price) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let existing = cart.find(item => item.name === productName);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ name: productName, price: price, quantity: 1 });
+  <script>
+    function enquireService(serviceName) {
+      // 跳转到 contact 页面，并带上参数
+      window.location.href = "contact.html?service=" + encodeURIComponent(serviceName);
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  // 更新购物车数量（显示总数量）
-  function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = count;
-  }
-
-  document.addEventListener("DOMContentLoaded", updateCartCount);
-</script>
-
+    // 保持购物车数量显示
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      document.getElementById("cart-count").textContent = count;
+    }
+    document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
 </body>
 </html>

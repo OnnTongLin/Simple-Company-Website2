@@ -3,124 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products & Services - My Company</title>
+  <title>Products</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Navigation -->
   <header>
-  <h1>Our Products</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="products.html" class="active">Products</a>
-    <a href="contact.html">Contact</a>
-  <a href="cart.html" id="cart-link">
-    🛒 (<span id="cart-count">0</span>)
-  </a>
-  </nav>
+    <h1>Our Products</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" id="cart-link">🛒 (<span id="cart-count">0</span>)</a>
+    </nav>
   </header>
 
-  <!-- Services Section -->
-  <section style="margin-top:80px;">
-    <h2>Our IT Support Services</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; max-width:1000px; margin:0 auto;">
-      
-      <div style="border:1px solid #ccc; border-radius:8px; padding:20px; background:#f9f9f9;">
-        <h3>System Installation</h3>
-        <p>We help set up new systems, install operating systems, and configure applications for your business needs.</p>
-      </div>
+  <section>
+    <h2>Available Hardware</h2>
+    <div class="card">
+      <h3>Laptop</h3>
+      <p>High-performance laptops suitable for work and business.</p>
+      <button onclick="addToCart('Laptop', 1200)" class="enquire-btn">Add to Cart</button>
+    </div>
 
-      <div style="border:1px solid #ccc; border-radius:8px; padding:20px; background:#f9f9f9;">
-        <h3>System Upgrade</h3>
-        <p>Upgrade hardware or software to keep your business running smoothly with the latest technology.</p>
-      </div>
+    <div class="card">
+      <h3>Desktop PC</h3>
+      <p>Powerful desktop computers with the latest processors.</p>
+      <button onclick="addToCart('Desktop PC', 1500)" class="enquire-btn">Add to Cart</button>
+    </div>
 
-      <div style="border:1px solid #ccc; border-radius:8px; padding:20px; background:#f9f9f9;">
-        <h3>Hardware Repair</h3>
-        <p>We provide troubleshooting and repair services for laptops, desktops, and other IT equipment.</p>
-      </div>
-
+    <div class="card">
+      <h3>Router</h3>
+      <p>Reliable routers for home and office use.</p>
+      <button onclick="addToCart('Router', 200)" class="enquire-btn">Add to Cart</button>
     </div>
   </section>
 
- <!-- Hardware Products Section -->
-<section>
-  <h2>Hardware Products</h2>
-  <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-
-    <!-- Laptops -->
-    <div style="border:1px solid #ddd; padding:20px; border-radius:8px; width:250px; text-align:center; background:#fff;">
-  <img src="https://picsum.photos/200/120?random=1" alt="Laptop" style="max-width:100%; border-radius:5px;">
-  <h3>Laptops</h3>
-  <p>Business-grade laptops with reliable performance for everyday tasks.</p>
-  <p><strong>$899</strong></p>
-  <button class="enquire-btn" onclick="location.href='contact.html?product=Laptops'">Enquire</button>
-  <button class="enquire-btn" onclick="addToCart('Laptops', 899)">Add to Cart</button>
-</div>
-
-
-    <!-- Printers -->
-    <div style="border:1px solid #ddd; padding:20px; border-radius:8px; width:250px; text-align:center; background:#fff;">
-      <img src="https://picsum.photos/200/120?random=2" alt="Printer" style="max-width:100%; border-radius:5px;">
-      <h3>Printers</h3>
-      <p>Reliable printers suitable for office and home use, supporting various formats.</p>
-      <p><strong>$299</strong></p>
-      <button class="enquire-btn" onclick="location.href='contact.html?product=Printer'">Enquire</button>
-	  <button class="enquire-btn" onclick="addToCart('Printers', 299)">Add to Cart</button>
-
-    </div>
-
-    <!-- Networking Equipment -->
-    <div style="border:1px solid #ddd; padding:20px; border-radius:8px; width:250px; text-align:center; background:#fff;">
-      <img src="https://picsum.photos/200/120?random=3" alt="Networking Equipment" style="max-width:100%; border-radius:5px;">
-      <h3>Networking Equipment</h3>
-      <p>Routers, switches, and firewalls to keep your business connected securely.</p>
-      <p><strong>$499</strong></p>
-      <button 
-        class="enquire-btn" 
-        onclick="location.href='contact.html?product=Networking Equipment'">
-        Enquire
-      </button>
-	  <button class="enquire-btn" onclick="addToCart('Networking Equipment', 499)">Add to Cart</button>
-    </div>
-
-  </div>
-</section>
-
-  <!-- Footer -->
   <footer>
-    <p>© 2025 My Company. All rights reserved.</p>
+    <p>&copy; 2025 My Company. All rights reserved.</p>
   </footer>
 
-<script>
-  // 添加到购物车（支持数量）
-  function addToCart(productName, price) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let existing = cart.find(item => item.name === productName);
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let existing = cart.find(item => item.name === name);
 
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ name: productName, price: price, quantity: 1 });
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name: name, price: Number(price), quantity: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-  }
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      document.getElementById("cart-count").textContent = count;
+    }
 
-  // 更新购物车数量（显示总数量）
-  function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = count;
-  }
-
-  document.addEventListener("DOMContentLoaded", updateCartCount);
-</script>
-
-
+    document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
 </body>
 </html>

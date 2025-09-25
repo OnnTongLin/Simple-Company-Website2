@@ -3,73 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Company</title>
+  <title>IT Support Company</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Testimonials 头像样式 */
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-
-  <!-- Banner -->
   <header>
-    <h1>IT Support Company</h1>
-
+    <h1>Welcome to Our IT Support Company</h1>
+    <p>We provide IT solutions, hardware, and professional support.</p>
+    <a href="services.html" class="btn">Explore Services</a>
     <nav>
       <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-  <a href="cart.html" id="cart-link">
-    🛒 (<span id="cart-count">0</span>)
-  </a>
+      <a href="services.html">Services</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" id="cart-link">🛒 (<span id="cart-count">0</span>)</a>
     </nav>
-    <h1>Welcome to My Company</h1>
-    <p>We Deliver Quality and Innovation</p>
-    <a href="contact.html" class="btn">Get in Touch</a>
   </header>
 
-  <!-- About Section -->
+  <!-- About Us -->
   <section>
     <h2>About Us</h2>
-    <p>We are a passionate team dedicated to providing excellent services to our clients. Our mission is to deliver innovation and quality in every project we do.</p>
+    <div class="grid">
+      <!-- 左边图片 -->
+      <div class="card">
+        <img src="https://picsum.photos/500/300" alt="About our company" style="width:100%; border-radius:10px;">
+      </div>
+
+      <!-- 右边文字 -->
+      <div class="card">
+        <p>
+          We specialize in IT system installations, hardware sales, and professional support for businesses of all sizes. 
+          Our team of experts ensures reliable service, fast response times, and tailored solutions for your company’s needs.
+        </p>
+        <p>
+          From troubleshooting to complete IT infrastructure setup, we provide end-to-end support to help your business grow with technology.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Testimonials -->
   <section>
-    <h2>Our Services</h2>
-    <p>We provide a range of IT and business solutions, from website development to digital marketing and data analytics.</p>
+    <h2>What Our Clients Say</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D." class="testimonial-avatar">
+        <p>"The IT support team was quick to respond and solved our issues effectively. Highly recommended!"</p>
+        <p><strong>- John D.</strong>, Small Business Owner</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K." class="testimonial-avatar">
+        <p>"They helped us upgrade our network infrastructure seamlessly. Our office has never been this fast!"</p>
+        <p><strong>- Sarah K.</strong>, Operations Manager</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Michael L." class="testimonial-avatar">
+        <p>"Reliable, professional, and affordable IT services. We trust them with all our hardware maintenance."</p>
+        <p><strong>- Michael L.</strong>, Tech Startup CEO</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>© 2025 My Company. All rights reserved.</p>
+    <p>&copy; 2025 My Company. All rights reserved.</p>
   </footer>
 
-<script>
-  // 添加到购物车（支持数量）
-  function addToCart(productName, price) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let existing = cart.find(item => item.name === productName);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ name: productName, price: price, quantity: 1 });
+  <script>
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      document.getElementById("cart-count").textContent = count;
     }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  // 更新购物车数量（显示总数量）
-  function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = count;
-  }
-
-  document.addEventListener("DOMContentLoaded", updateCartCount);
-</script>
-
-
+    document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
 </body>
 </html>

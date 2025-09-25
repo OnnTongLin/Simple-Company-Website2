@@ -20,22 +20,24 @@
 
   <section>
     <h2>What We Offer</h2>
-    <div class="card">
-      <h3>System Installation</h3>
-      <p>We install and configure operating systems for desktops and laptops.</p>
-      <button class="enquire-btn" onclick="enquireService('System Installation')">Enquire</button>
-    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>System Installation</h3>
+        <p>We install and configure operating systems for desktops and laptops.</p>
+        <button class="enquire-btn" onclick="enquireService('System Installation')">Enquire</button>
+      </div>
 
-    <div class="card">
-      <h3>Hardware Repair</h3>
-      <p>Repair and replacement services for computers, laptops, and servers.</p>
-      <button class="enquire-btn" onclick="enquireService('Hardware Repair')">Enquire</button>
-    </div>
+      <div class="card">
+        <h3>Hardware Repair</h3>
+        <p>Repair and replacement services for computers, laptops, and servers.</p>
+        <button class="enquire-btn" onclick="enquireService('Hardware Repair')">Enquire</button>
+      </div>
 
-    <div class="card">
-      <h3>Network Setup</h3>
-      <p>Professional setup of LAN, Wi-Fi, and server infrastructure.</p>
-      <button class="enquire-btn" onclick="enquireService('Network Setup')">Enquire</button>
+      <div class="card">
+        <h3>Network Setup</h3>
+        <p>Professional setup of LAN, Wi-Fi, and server infrastructure.</p>
+        <button class="enquire-btn" onclick="enquireService('Network Setup')">Enquire</button>
+      </div>
     </div>
   </section>
 
@@ -45,11 +47,8 @@
 
   <script>
     function enquireService(serviceName) {
-      // 跳转到 contact 页面，并带上参数
       window.location.href = "contact.html?service=" + encodeURIComponent(serviceName);
     }
-
-    // 保持购物车数量显示
     function updateCartCount() {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       let count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
